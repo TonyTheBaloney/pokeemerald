@@ -464,6 +464,7 @@ static void DestroySplitIcon(void); //Physical/Special Split from BE
 //Physical/Special Split from BE
 #define TAG_SPLIT_ICONS 30004
 
+
 static const u16 sSplitIcons_Pal[] = INCBIN_U16("graphics/interface/split_icons.gbapal");
 static const u32 sSplitIcons_Gfx[] = INCBIN_U32("graphics/interface/split_icons.4bpp.lz");
 
@@ -2110,6 +2111,9 @@ void Task_OpenPokedexMainPage(u8 taskId)
 
 #define tLoadScreenTaskId data[0]
 
+u8 enableAllPokedex = FALSE;
+
+
 static void Task_HandlePokedexInput(u8 taskId)
 {
     SetGpuReg(REG_OFFSET_BG0VOFS, sPokedexView->menuY);
@@ -2125,6 +2129,22 @@ static void Task_HandlePokedexInput(u8 taskId)
     }
     else
     {
+        if(JOY_HELD(L_BUTTON) && JOY_HELD(R_BUTTON) && !FlagGet(FLAG_GET_ALL_POKEDEX))
+        {
+
+            u16 i;
+
+            for (i = SPECIES_BULBASAUR; i <= SPECIES_DEOXYS; i++)
+            {
+                GetSetPokedexFlag(i, FLAG_SET_SEEN);
+            }
+
+            EnableNationalPokedex();
+            PlaySE(SE_SELECT);
+
+            FlagSet(FLAG_GET_ALL_POKEDEX);
+        }
+
         if (JOY_NEW(A_BUTTON) && sPokedexView->pokedexList[sPokedexView->selectedPokemon].seen)
         {
             TryDestroyStatBars(); //HGSS_Ui
