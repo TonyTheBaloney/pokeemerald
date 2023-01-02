@@ -68,10 +68,35 @@ struct TrainerMonItemCustomMoves
     u16 moves[MAX_MON_MOVES];
 };
 
+/*struct TrainerMonItemCustomMovesAbilities
+{
+    u16 iv;
+    u8 lvl;
+    u16 species;
+    u16 heldItem;
+    u16 moves[MAX_MON_MOVES];
+    u8 abilityNums;
+}
+
+struct TrainerMonNoItemCustomMovesAbilities
+{
+    u16 iv;
+    u8 lvl;
+    u16 species;
+    u16 moves[MAX_MON_MOVES];
+    u8 abilityNums;
+};*/
+
+
 #define NO_ITEM_DEFAULT_MOVES(party) { .NoItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = 0
 #define NO_ITEM_CUSTOM_MOVES(party) { .NoItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET
+#define NO_ITEM_CUSTOM_MOVES_CUSTOM_ABILITY(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_CUSTOM_ABILITY
+
 #define ITEM_DEFAULT_MOVES(party) { .ItemDefaultMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_HELD_ITEM
 #define ITEM_CUSTOM_MOVES(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM
+#define ITEM_CUSTOM_MOVES_CUSTOM_ABILITY(party) { .ItemCustomMoves = party }, .partySize = ARRAY_COUNT(party), .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET | |F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_ABILITY
+
+
 
 union TrainerMonPtr
 {

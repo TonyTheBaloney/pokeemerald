@@ -1941,6 +1941,20 @@ static void SpriteCB_UnusedBattleInit_Main(struct Sprite *sprite)
     }
 }
 
+static u8 GetNumberOfBadges(void)
+{
+    u16 badgeFlag;
+    u8 count = 0;
+    
+    for (badgeFlag = FLAG_BADGE01_GET; badgeFlag < FLAG_BADGE01_GET + NUM_BADGES; badgeFlag++)
+    {
+        if (FlagGet(badgeFlag))
+            count++;
+    }
+    
+    return count;
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u32 nameHash = 0;
@@ -1948,6 +1962,15 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 fixedIV;
     s32 i, j;
     u8 monsCount;
+
+    u8 realLevel;
+    u8 fixedLevel;
+    u8 variance = 3;
+
+    u8 fixedLevelArr[] = {3, 10, 13, 17, 21, 25, 29, 33, 36};
+    u8 numBadges = GetNumberOfBadges();
+    fixedLevel = fixedLevelArr[numBadges];
+    
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -1995,7 +2018,20 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
                 personalityValue += nameHash << 8;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                {
+				u8 min = fixedLevel-variance;
+				u8 max = fixedLevel+variance;
+				u8 range = max - min + 1;
+				u8 rand = Random() % range;
+                
+
+				if (min <=0)
+					min=1;
+				realLevel = min + rand;
+                }
+                CreateMon(&party[i], partyData[i].species, realLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                
+                //CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -2050,6 +2086,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 }
                 break;
             }
+            
+
             }
         }
 
