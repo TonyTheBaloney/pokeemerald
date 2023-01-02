@@ -55,6 +55,7 @@ DesertRuins_EventScript_CaveEntranceSide::
 	end
 
 DesertRuins_EventScript_Regirock::
+	call Common_EventScript_SaveGame 
   bufferspeciesname 0, SPECIES_REGIROCK
 	lock
 	faceplayer

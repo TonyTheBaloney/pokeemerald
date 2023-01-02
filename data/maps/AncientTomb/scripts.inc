@@ -55,6 +55,7 @@ AncientTomb_EventScript_CaveEntranceSide::
 	end
 
 AncientTomb_EventScript_Registeel::
+	call Common_EventScript_SaveGame
   bufferspeciesname 0, SPECIES_REGISTEEL
 	lock
 	faceplayer

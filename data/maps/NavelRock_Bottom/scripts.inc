@@ -30,6 +30,7 @@ NavelRock_Bottom_EventScript_TryRemoveLugia::
 	return
 
 NavelRock_Bottom_EventScript_Lugia::
+	call Common_EventScript_SaveGame
 	lock
 	faceplayer
 	waitse

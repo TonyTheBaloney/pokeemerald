@@ -33,6 +33,7 @@ NavelRock_Top_EventScript_TryRemoveHoOh::
 	return
 
 NavelRock_Top_EventScript_HoOh::
+	call Common_EventScript_SaveGame 
 	lockall
 	setvar VAR_TEMP_1, 1
 	special SpawnCameraObject

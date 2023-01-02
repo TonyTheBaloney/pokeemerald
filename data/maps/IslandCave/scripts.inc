@@ -88,6 +88,7 @@ IslandCave_EventScript_ClearSteps::
 	return
 
 IslandCave_EventScript_Regice::
+	call Common_EventScript_SaveGame 
   bufferspeciesname 0, SPECIES_REGICE
 	lock
 	faceplayer
