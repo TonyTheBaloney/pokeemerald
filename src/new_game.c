@@ -47,6 +47,8 @@
 #include "constants/items.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
+extern const u8 EventScript_AddRunningShoes[];
+
 
 static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
@@ -193,6 +195,7 @@ void NewGameInitData(void)
     ResetFanClub();
     ResetLotteryCorner();
     WarpToTruck();
+    RunScriptImmediately(EventScript_AddRunningShoes);
     RunScriptImmediately(EventScript_ResetAllMapFlags);
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
