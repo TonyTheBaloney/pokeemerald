@@ -148,6 +148,32 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
+void setFlyFlags(void)
+{
+    FlagSet(FLAG_VISITED_LITTLEROOT_TOWN);
+    FlagSet(FLAG_VISITED_OLDALE_TOWN);
+    FlagSet(FLAG_VISITED_DEWFORD_TOWN);
+    FlagSet(FLAG_VISITED_LAVARIDGE_TOWN);
+    FlagSet(FLAG_VISITED_FALLARBOR_TOWN);
+    FlagSet(FLAG_VISITED_VERDANTURF_TOWN);
+    FlagSet(FLAG_VISITED_PETALBURG_CITY);
+    FlagSet(FLAG_VISITED_SLATEPORT_CITY);
+    FlagSet(FLAG_VISITED_MAUVILLE_CITY);
+    FlagSet(FLAG_VISITED_RUSTBORO_CITY);
+    FlagSet(FLAG_VISITED_FORTREE_CITY);
+    FlagSet(FLAG_VISITED_LILYCOVE_CITY);
+    FlagSet(FLAG_VISITED_MOSSDEEP_CITY);
+    FlagSet(FLAG_VISITED_SOOTOPOLIS_CITY);
+    FlagSet(FLAG_VISITED_EVER_GRANDE_CITY);
+    
+}
+
+void GiveStarterItems(void)
+{
+    AddBagItem(ITEM_POTION, 1);
+    AddBagItem(ITEM_POKE_BALL, 10);
+}
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
@@ -197,6 +223,7 @@ void NewGameInitData(void)
     WarpToTruck();
     RunScriptImmediately(EventScript_AddRunningShoes);
     RunScriptImmediately(EventScript_ResetAllMapFlags);
+    setFlyFlags();
     ResetMiniGamesRecords();
     InitUnionRoomChatRegisteredTexts();
     InitLilycoveLady();
@@ -207,7 +234,10 @@ void NewGameInitData(void)
     WipeTrainerNameRecords();
     ResetTrainerHillResults();
     ResetContestLinkResults();
+    GiveStarterItems();
 }
+
+
 
 static void ResetMiniGamesRecords(void)
 {
