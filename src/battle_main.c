@@ -2036,6 +2036,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     
                     CreateMon(&party[i], partyData[i].species, realLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 }
+
+                if(&partyData[i].abilityNums){
+                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums-1);
+                }
                 break;
             }
             case F_TRAINER_PARTY_CUSTOM_MOVESET:
@@ -2072,6 +2076,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     SetMonData(&party[i], MON_DATA_MOVE1 + j, &partyData[i].moves[j]);
                     SetMonData(&party[i], MON_DATA_PP1 + j, &gBattleMoves[partyData[i].moves[j]].pp);
                 }
+
+                if(&partyData[i].abilityNums){
+                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums-1);
+                }
                 break;
             }
             case F_TRAINER_PARTY_HELD_ITEM:
@@ -2099,6 +2107,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                     
                     CreateMon(&party[i], partyData[i].species, realLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                }
+                //Skitty
+                if(&partyData[i].abilityNums){
+                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums);
                 }
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
@@ -2129,6 +2141,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     }
                     
                     CreateMon(&party[i], partyData[i].species, realLevel, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                }
+
+                if(&partyData[i].abilityNums){
+                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNums-1);
                 }
 
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);

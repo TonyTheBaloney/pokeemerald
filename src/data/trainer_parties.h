@@ -3894,7 +3894,8 @@ static const struct TrainerMonItemDefaultMoves sParty_Miguel1[] = {
     .iv = 0,
     .lvl = 15,
     .species = SPECIES_SKITTY,
-    .heldItem = ITEM_ORAN_BERRY
+    .heldItem = ITEM_ORAN_BERRY,
+    .abilityNums = 0
     }
 };
 
@@ -4474,6 +4475,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Andrew[] = {
     .iv = 0,
     .lvl = 10,
     .species = SPECIES_TENTACOOL,
+    .abilityNums = 1
     },
     {
     .iv = 0,

@@ -42,6 +42,7 @@ struct TrainerMonNoItemDefaultMoves
     u8 lvl;
     u16 species;
     bool8 constLevel;
+    u8 abilityNums;
 };
 
 struct TrainerMonItemDefaultMoves
@@ -51,6 +52,7 @@ struct TrainerMonItemDefaultMoves
     u16 species;
     u16 heldItem;
     bool8 constLevel;
+    u8 abilityNums;
 };
 
 struct TrainerMonNoItemCustomMoves
@@ -60,6 +62,7 @@ struct TrainerMonNoItemCustomMoves
     u16 species;
     u16 moves[MAX_MON_MOVES];
     bool8 constLevel;
+    u8 abilityNums;
 };
 
 struct TrainerMonItemCustomMoves
@@ -70,6 +73,7 @@ struct TrainerMonItemCustomMoves
     u16 heldItem;
     u16 moves[MAX_MON_MOVES];
     bool8 constLevel;
+    u8 abilityNums;
 };
 
 /*struct TrainerMonItemCustomMovesAbilities
